@@ -1,8 +1,35 @@
-body {
-  margin: 0;
+:root{
+  --initial-wave: #3498db;
+  --initial-bg: #FFFFFF;
+  --initial-root: #FFFFFF;
+  --initial-txt: #111111;
+}
+
+*{
+  margin: 0px;
+  padding: 0px;
+
+  box-sizing: border-box;
+}
+
+
+html,
+input,
+textarea {
+  line-height: 1.4;
+
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
+}
+
+body{
+  background-color: var(--initial-bg);
+  background-size: cover;
+  background-attachment: fixed;
+
+  min-height: 100vh;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -11,3 +38,213 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+body .content{
+  width: 90%;
+  max-width: 1100px;
+  height: 100%;
+
+  margin: 0px auto;
+
+  display: flex;
+  flex-direction: column;
+}
+
+body .content > svg {
+  display: block;
+  transform-origin: bottom;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+}
+
+body .content svg .wave{
+  fill: var(--initial-wave);
+  animation: wave 8s infinite;
+}
+@keyframes wave{
+  0%   {d: path("M 0 0 L 0 547.731 Q 341.5 476.188 683 430.221 T 1366 286.766 L 1366 0 Z");}
+
+  50% {d: path("M 0 0 L 0 547.731 Q 341.5 500.188 683 430.221 T 1366 286.766 L 1366 0 Z");}
+
+  0%   {d: path("M 0 0 L 0 547.731 Q 341.5 476.188 683 430.221 T 1366 286.766 L 1366 0 Z");}
+}
+body .content svg .wave2{
+  fill: var(--initial-wave);
+  animation: wave2 10s infinite;
+}
+@keyframes wave2{
+  0%   {d: path("M 0 0 L 0 597.928 Q 341.5 441.969 683.369 419.29 T 1366 250.369 L 1366 0 Z");}
+
+  50% {d: path("M 0 0 L 0 540.928 Q 199.5 466.969 484.369 419.29 T 1366 320.369 L 1366 0 Z");}
+
+  100%   {d: path("M 0 0 L 0 597.928 Q 341.5 441.969 683.369 419.29 T 1366 250.369 L 1366 0 Z");}
+}
+body .content #root{
+  background-color: var(--initial-root);
+  color: var(--initial-txt);
+
+  margin: 80px auto;
+  padding: 64px;
+
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 16px 24px 0px;
+
+  max-width: 740px;
+
+  animation: scale-up-center 1.2s cubic-bezier(0.680, -0.550, 0.265, 1.550) both;
+}
+
+p {
+  margin: 0;
+}
+
+pre {
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.1);
+  white-space: pre-wrap;
+}
+
+:not(pre) > code {
+  font-family: monospace;
+  background-color:rgba(0, 0, 0, 0.1);
+  padding: 3px;
+}
+
+img {
+  max-width: 100%;
+  max-height: 20em;
+}
+
+blockquote {
+  border-left: 2px solid #7dbde8;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 10px;
+  color: #7dbde8;
+  font-style: italic;
+}
+
+blockquote[dir='rtl'] {
+  border-left: none;
+  padding-left: 0;
+  padding-right: 10px;
+  border-right: 2px solid #ddd;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td {
+  padding: 10px;
+  border: 2px solid #ddd;
+}
+
+input {
+  box-sizing: border-box;
+  font-size: 0.85em;
+  width: 100%;
+  padding: 0.5em;
+  border: 2px solid #ddd;
+  background: #fafafa;
+}
+
+input:focus {
+  outline: 0;
+  border-color: blue;
+}
+
+
+.toggle{
+  margin: 0 auto;
+}
+
+.toggle input[type=checkbox]{
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+.toggle label {
+  cursor: pointer;
+  text-indent: -9999px;
+  width: 52px;
+  height: 27px;
+  background: var(--initial-wave);
+  float: right;
+  border-radius: 100px;
+  position: relative;
+}
+
+.toggle label::after{
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  background-color:var(--initial-bg);
+  border-radius: 90px;
+  transition: 0.3s;
+}
+
+.toggle input:checked + label {
+  background-color: var(--initial-wave);
+}
+
+.toggle input:checked + label::after {
+  left: calc(100% - 5px);
+  transform: translateX(-100%);
+}
+
+.toggle label:active:after {
+  width: 45px;
+}
+
+[data-slate-editor] > * + * {
+  margin-top: 1em;
+}
+
+@keyframes scale-up-center {
+  0% {
+    transform: scale(0.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes jelloHorizontal{ 0% {
+  transform: scale3d(1, 1, 1);
+}
+30% {
+  transform: scale3d(1.25, 0.75, 1);
+}
+40% {
+  transform: scale3d(0.75, 1.25, 1);
+}
+50% {
+  transform: scale3d(1.15, 0.85, 1);
+}
+65% {
+  transform: scale3d(0.95, 1.05, 1);
+}
+75% {
+  transform: scale3d(1.05, 0.95, 1);
+}
+100% {
+  transform: scale3d(1, 1, 1);
+}}
+
+/*
+#format_bold:active{
+  color: red;
+}
+#format_bold:hover{
+    animation: jelloHorizontal 0.9s  both;
+  
+}*/
